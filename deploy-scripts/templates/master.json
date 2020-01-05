@@ -76,7 +76,7 @@
     },
     "variables": {
         "Key Vault Deployment": "[concat('key-vault-', parameters('deploymentUid'))]",
-        "Api Search Deployment": "[concat('api-search-', parameters('deploymentUid'))]",
+        "Api Comment Deployment": "[concat('api-comment-', parameters('deploymentUid'))]",
         "Function Deployment": "[concat('function-', parameters('deploymentUid'))]"
     },
     "resources": [
@@ -138,7 +138,7 @@
         {
             "apiVersion": "2019-05-01",
             "type": "Microsoft.Resources/deployments",
-            "name": "[variables('Api Search Deployment')]",
+            "name": "[variables('Api Comment Deployment')]",
             "dependsOn": [
             ],
             "properties": {
@@ -149,12 +149,6 @@
                 "parameters": {
                     "apimName": {
                         "value": "[parameters('apimName')]"
-                    },
-                    "searchServiceName": {
-                        "value": "[parameters('searchServiceName')]"
-                    },
-                    "searchKey": {
-                        "value": "[reference(variables('Search Deployment'), '2019-05-01').outputs.searchServiceKey.value]"
                     }
                 }
             }
