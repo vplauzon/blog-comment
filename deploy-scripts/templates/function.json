@@ -127,7 +127,7 @@
     "outputs": {
         "identity": {
             "type": "object",
-            "value": "[reference(resourceId('Microsoft.Web/sites', parameters('functionAppName')), '2019-08-01', 'Full')]"
+            "value": "[reference(resourceId('Microsoft.Web/sites', parameters('functionAppName')), '2019-08-01', 'Full').identity]"
         }
     }
 }
