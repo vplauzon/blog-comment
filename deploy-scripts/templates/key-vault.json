@@ -12,7 +12,7 @@
             "metadata": {
                 "description": "Identity of the client accessing the Key Vault (should be function app MSI)"
             },
-            "type": "string"
+            "type": "object"
         }
     },
     "variables": {
