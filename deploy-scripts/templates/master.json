@@ -129,8 +129,8 @@
                     "keyVaultName": {
                         "value": "[parameters('keyVaultName')]"
                     },
-                   "clientIdentity": {
-                        "value": "[reference(resourceId('Microsoft.Resources/deployments', variables('Function Deployment'))).outputs.identity.value]"
+                    "clientIdentity": {
+                        "value": "[reference(variables('Function Deployment'), '2019-05-01').outputs.identity.value]"
                     }
                 }
             }
