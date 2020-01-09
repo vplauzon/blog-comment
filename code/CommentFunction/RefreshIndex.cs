@@ -1,6 +1,9 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using CommentFunction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Search;
@@ -9,6 +12,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
+using Octokit;
 
 namespace SearchFunction
 {
@@ -19,16 +23,50 @@ namespace SearchFunction
             [HttpTrigger(AuthorizationLevel.Function, "post")]HttpRequest request,
             ILogger log)
         {
+            const string REPO_OWNER = "vplauzon";
+            const string REPO_NAME = "vplauzon.github.io";
+
+            log.LogInformation($"Comment at: {DateTime.Now}");
             try
             {
-                var user = Environment.GetEnvironmentVariable("githubUserName");
-                var password = Environment.GetEnvironmentVariable("githubPassword");
+                var commentRequest = await RetrieveCommentAsync(request, log);
+                var comment = new Comment(commentRequest);
+                var client = GetGitHubClient();
+                var repo = await client.Repository.Get(REPO_OWNER, REPO_NAME);
+                var defaultBranch =
+                    await client.Repository.Branch.Get(repo.Id, repo.DefaultBranch);
+                //  Create new branch
+                var newBranch = await client.Git.Reference.Create(
+                    repo.Id,
+                    new NewReference(
+                        $"refs/heads/comment-{comment.Id}",
+                        defaultBranch.Commit.Sha));
+                // Create a new file with the comments in it
+                var fileRequest = new CreateFileRequest(
+                    $"Comment submitted through Azure Function",
+                    comment.AsYaml(),
+                    newBranch.Ref)
+                {
+                    Committer = new Committer("commenter", "commenter@commenter.com", DateTime.Now)
+                };
 
-                log.LogInformation($"Comment at: {DateTime.Now}");
+                await client.Repository.Content.CreateFile(
+                    repo.Id,
+                    $"_data/comments/{commentRequest.PagePath}/{comment.Id}.yaml",
+                    fileRequest);
 
-                return new OkObjectResult(user);
+                // Create a pull request for the new branch and file
+                var pr = await client.Repository.PullRequest.Create(
+                    repo.Id,
+                    new NewPullRequest(fileRequest.Message, newBranch.Ref, defaultBranch.Name)
+                    {
+                        Body = $"From {comment.Author.Name} on {commentRequest.PagePath}"
+                    });
+
+
+                return new OkObjectResult("Comment Submitted");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.LogError($"Exception:  {ex.Message}");
                 log.LogError($"Inner Exception:  {ex.InnerException?.Message}");
@@ -36,6 +74,25 @@ namespace SearchFunction
 
                 throw;
             }
+        }
+
+        private static GitHubClient GetGitHubClient()
+        {
+            var githubUser = Environment.GetEnvironmentVariable("githubUserName");
+            var githubPassword = Environment.GetEnvironmentVariable("githubPassword");
+            var basicAuth = new Credentials(githubUser, githubPassword);
+            var client = new GitHubClient(new ProductHeaderValue("user-comment"));
+
+            client.Credentials = basicAuth;
+            return client;
+        }
+
+        private static async Task<CommentRequest> RetrieveCommentAsync(HttpRequest request, ILogger log)
+        {
+            var requestBody = await new StreamReader(request.Body).ReadToEndAsync();
+            var commentRequest = JsonSerializer.Deserialize<CommentRequest>(requestBody);
+
+            return commentRequest;
         }
     }
 }
