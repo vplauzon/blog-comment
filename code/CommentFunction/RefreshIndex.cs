@@ -52,10 +52,12 @@ namespace SearchFunction
                 };
                 var filePath = $"_data/comments{commentRequest.PagePath}/{comment.Id}.yaml";
 
+                log.LogInformation("Branch Created");
                 log.LogInformation("Comment:");
                 log.LogInformation(yamlComment);
                 log.LogInformation($"Comment file path (in GitHub):  {filePath}");
                 await client.Repository.Content.CreateFile(repo.Id, filePath, fileRequest);
+                log.LogInformation("File Created");
 
                 // Create a pull request for the new branch and file
                 var pr = await client.Repository.PullRequest.Create(
@@ -64,7 +66,8 @@ namespace SearchFunction
                     {
                         Body = $"From {comment.Author.Name} on {commentRequest.PagePath}"
                     });
-
+                log.LogInformation("PR Created");
+                log.LogInformation("Done");
 
                 return new OkObjectResult("Comment Submitted");
             }
