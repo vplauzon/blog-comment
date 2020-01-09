@@ -2,18 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "githubUserName": {
-            "metadata": {
-                "description": "Name of the GitHub account doing pull requests"
-            },
-            "type": "string"
-        },
-        "githubPassword": {
-            "metadata": {
-                "description": "Password of the GitHub account doing pull requests"
-            },
-            "type": "string"
-        },
         "githubToken": {
             "metadata": {
                 "description": "Personal Access Token of GitHub"
@@ -114,14 +102,6 @@
                         {
                             "name": "WEBSITE_TIME_ZONE",
                             "value": "[variables('Function App Timezone')]"
-                        },
-                        {
-                            "name": "githubUserName",
-                            "value": "[parameters('githubUserName')]"
-                        },
-                        {
-                            "name": "githubPassword",
-                            "value": "[parameters('githubPassword')]"
                         },
                         {
                             "name": "githubToken",

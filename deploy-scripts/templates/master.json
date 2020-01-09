@@ -54,18 +54,6 @@
             "defaultValue": "blog-app-plan",
             "type": "string"
         },
-        "githubUserName": {
-            "metadata": {
-                "description": "Name of the GitHub account doing pull requests"
-            },
-            "type": "string"
-        },
-        "githubPassword": {
-            "metadata": {
-                "description": "Password of the GitHub account doing pull requests"
-            },
-            "type": "string"
-        },
         "githubToken": {
             "metadata": {
                 "description": "Personal Access Token of GitHub"
@@ -98,12 +86,6 @@
                     "uri": "[concat(parameters('releaseFolderUrl'), '/templates/function.json?', parameters('sasToken'))]"
                 },
                 "parameters": {
-                    "githubUserName": {
-                        "value": "[parameters('githubUserName')]"
-                    },
-                    "githubPassword": {
-                        "value": "[parameters('githubPassword')]"
-                    },
                     "githubToken": {
                         "value": "[parameters('githubToken')]"
                     },

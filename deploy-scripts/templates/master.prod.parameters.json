@@ -14,12 +14,6 @@
         "functionAppName": {
             "value": "vpl-blog-comment-function-app"
         },
-        "githubUserName": {
-            "value": "@Microsoft.KeyVault(SecretUri=https://vpl-blog-comment-kv.vault.azure.net/secrets/userName/b3f2665c538c4ea5ac6b5c021a4baa49)"
-        },
-        "githubPassword": {
-            "value": "@Microsoft.KeyVault(SecretUri=https://vpl-blog-comment-kv.vault.azure.net/secrets/password/6aff7d6eea184383892eedf8ae855526)"
-        },
         "githubToken": {
             "value": "@Microsoft.KeyVault(SecretUri=https://vpl-blog-comment-kv.vault.azure.net/secrets/token/748f9a9e51714977b26c2753424a5bc3)"
         },
