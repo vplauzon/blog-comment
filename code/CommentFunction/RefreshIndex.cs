@@ -50,13 +50,12 @@ namespace SearchFunction
                 {
                     Committer = new Committer("commenter", "commenter@commenter.com", DateTime.Now)
                 };
+                var filePath = $"_data/comments{commentRequest.PagePath}/{comment.Id}.yaml";
 
                 log.LogInformation("Comment:");
                 log.LogInformation(yamlComment);
-                await client.Repository.Content.CreateFile(
-                    repo.Id,
-                    $"_data/comments/{commentRequest.PagePath}/{comment.Id}.yaml",
-                    fileRequest);
+                log.LogInformation($"Comment file path (in GitHub):  {filePath}");
+                await client.Repository.Content.CreateFile(repo.Id, filePath, fileRequest);
 
                 // Create a pull request for the new branch and file
                 var pr = await client.Repository.PullRequest.Create(
