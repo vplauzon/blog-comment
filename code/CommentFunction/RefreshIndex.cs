@@ -41,15 +41,18 @@ namespace SearchFunction
                     new NewReference(
                         $"refs/heads/comment-{comment.Id}",
                         defaultBranch.Commit.Sha));
+                var yamlComment = comment.AsYaml();
                 // Create a new file with the comments in it
                 var fileRequest = new CreateFileRequest(
                     $"Comment submitted through Azure Function",
-                    comment.AsYaml(),
+                    yamlComment,
                     newBranch.Ref)
                 {
                     Committer = new Committer("commenter", "commenter@commenter.com", DateTime.Now)
                 };
 
+                log.LogInformation("Comment:");
+                log.LogInformation(yamlComment);
                 await client.Repository.Content.CreateFile(
                     repo.Id,
                     $"_data/comments/{commentRequest.PagePath}/{comment.Id}.yaml",
@@ -84,13 +87,18 @@ namespace SearchFunction
             var client = new GitHubClient(new ProductHeaderValue("user-comment"));
 
             client.Credentials = basicAuth;
+
             return client;
         }
 
-        private static async Task<CommentRequest> RetrieveCommentAsync(HttpRequest request, ILogger log)
+        private static async Task<CommentRequest> RetrieveCommentAsync(
+            HttpRequest request,
+            ILogger log)
         {
             var requestBody = await new StreamReader(request.Body).ReadToEndAsync();
             var commentRequest = JsonSerializer.Deserialize<CommentRequest>(requestBody);
+
+            log.LogInformation($"Request:  {requestBody}");
 
             return commentRequest;
         }
