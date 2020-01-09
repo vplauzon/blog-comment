@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "keyVaultName": {
-            "value": "vpl-blog-comment-key-vault"
+            "value": "vpl-blog-comment-kv"
         },
         "functionStorageAccountName": {
             "value": "vplblogcommentfunction"
