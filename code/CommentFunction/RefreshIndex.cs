@@ -50,7 +50,7 @@ namespace SearchFunction
                 {
                     Committer = new Committer("commenter", "commenter@commenter.com", DateTime.Now)
                 };
-                var filePath = $"_data/comments{commentRequest.PagePath}/{comment.Id}.yaml";
+                var filePath = $"_data{commentRequest.PagePath}/{comment.Id}.yaml";
 
                 log.LogInformation("Branch Created");
                 log.LogInformation("Comment:");
@@ -83,9 +83,11 @@ namespace SearchFunction
 
         private static GitHubClient GetGitHubClient()
         {
-            var githubUser = Environment.GetEnvironmentVariable("githubUserName");
-            var githubPassword = Environment.GetEnvironmentVariable("githubPassword");
-            var basicAuth = new Credentials(githubUser, githubPassword);
+            //var githubUser = Environment.GetEnvironmentVariable("githubUserName");
+            //var githubPassword = Environment.GetEnvironmentVariable("githubPassword");
+            var githubToken = Environment.GetEnvironmentVariable("githubToken");
+            var basicAuth = new Credentials(githubToken);
+            //var basicAuth = new Credentials(githubUser, githubPassword);
             var client = new GitHubClient(new ProductHeaderValue("user-comment"));
 
             client.Credentials = basicAuth;

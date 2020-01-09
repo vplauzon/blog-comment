@@ -14,6 +14,12 @@
             },
             "type": "string"
         },
+        "githubToken": {
+            "metadata": {
+                "description": "Personal Access Token of GitHub"
+            },
+            "type": "string"
+        },
         "storageAccountName": {
             "metadata": {
                 "description": "Name of the storage account used by Azure function"
@@ -116,6 +122,10 @@
                         {
                             "name": "githubPassword",
                             "value": "[parameters('githubPassword')]"
+                        },
+                        {
+                            "name": "githubToken",
+                            "value": "[parameters('githubToken')]"
                         }
                     ]
                 }

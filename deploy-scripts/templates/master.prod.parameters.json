@@ -20,6 +20,9 @@
         "githubPassword": {
             "value": "@Microsoft.KeyVault(SecretUri=https://vpl-blog-comment-kv.vault.azure.net/secrets/password/6aff7d6eea184383892eedf8ae855526)"
         },
+        "githubToken": {
+            "value": "@Microsoft.KeyVault(SecretUri=https://vpl-blog-comment-kv.vault.azure.net/secrets/token/748f9a9e51714977b26c2753424a5bc3)"
+        },
         "apimName": {
             "value": "vpl-blog-apim"
         }

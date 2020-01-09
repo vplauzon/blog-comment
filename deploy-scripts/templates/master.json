@@ -66,6 +66,12 @@
             },
             "type": "string"
         },
+        "githubToken": {
+            "metadata": {
+                "description": "Personal Access Token of GitHub"
+            },
+            "type": "string"
+        },
         "apimName": {
             "type": "string",
             "minLength": 2,
@@ -97,6 +103,9 @@
                     },
                     "githubPassword": {
                         "value": "[parameters('githubPassword')]"
+                    },
+                    "githubToken": {
+                        "value": "[parameters('githubToken')]"
                     },
                     "storageAccountName": {
                         "value": "[parameters('functionStorageAccountName')]"
