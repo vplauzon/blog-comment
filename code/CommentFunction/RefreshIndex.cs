@@ -83,11 +83,8 @@ namespace SearchFunction
 
         private static GitHubClient GetGitHubClient()
         {
-            //var githubUser = Environment.GetEnvironmentVariable("githubUserName");
-            //var githubPassword = Environment.GetEnvironmentVariable("githubPassword");
-            var githubToken = Environment.GetEnvironmentVariable("githubToken");
+            var githubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
             var basicAuth = new Credentials(githubToken);
-            //var basicAuth = new Credentials(githubUser, githubPassword);
             var client = new GitHubClient(new ProductHeaderValue("user-comment"));
 
             client.Credentials = basicAuth;

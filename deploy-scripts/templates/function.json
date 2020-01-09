@@ -104,7 +104,7 @@
                             "value": "[variables('Function App Timezone')]"
                         },
                         {
-                            "name": "githubToken",
+                            "name": "GITHUB_TOKEN",
                             "value": "[parameters('githubToken')]"
                         }
                     ]
