@@ -21,11 +21,12 @@ namespace SearchFunction
         {
             try
             {
-                var searchAccount = Environment.GetEnvironmentVariable("search-account");
+                var user = Environment.GetEnvironmentVariable("githubUserName");
+                var password = Environment.GetEnvironmentVariable("githubPassword");
 
                 log.LogInformation($"Comment at: {DateTime.Now}");
 
-                return new OkObjectResult("Hi buddy");
+                return new OkObjectResult(user);
             }
             catch(Exception ex)
             {

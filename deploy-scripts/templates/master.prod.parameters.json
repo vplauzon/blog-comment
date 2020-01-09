@@ -15,10 +15,10 @@
             "value": "vpl-blog-comment-function-app"
         },
         "githubUserName": {
-            "value": "@Microsoft.KeyVault(SecretUri=...)"
+            "value": "@Microsoft.KeyVault(SecretUri=https://vpl-blog-comment-kv.vault.azure.net/secrets/userName/b23605add3714e029a0b192c3496226a)"
         },
         "githubPassword": {
-            "value": "@Microsoft.KeyVault(SecretUri=...)"
+            "value": "@Microsoft.KeyVault(SecretUri=https://vpl-blog-comment-kv.vault.azure.net/secrets/password/6aff7d6eea184383892eedf8ae855526)"
         },
         "apimName": {
             "value": "vpl-blog-apim"
