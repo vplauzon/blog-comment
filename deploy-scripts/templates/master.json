@@ -72,7 +72,7 @@
         "Key Vault Deployment": "[concat('key-vault-', parameters('deploymentUid'))]",
         "Api Comment Deployment": "[concat('api-comment-', parameters('deploymentUid'))]",
         "Function Deployment": "[concat('function-', parameters('deploymentUid'))]",
-        "Apim ID": "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimName'))]"
+        "Apim ID": "[resourceId('Microsoft.ApiManagement/service', parameters('apimName'))]"
     },
     "resources": [
         {
