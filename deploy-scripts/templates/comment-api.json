@@ -100,7 +100,7 @@
                             "apiVersion": "2019-01-01",
                             "name": "policy",
                             "dependsOn": [
-                                "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('apimName'), variables('Api'), 'get')]",
+                                "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('apimName'), variables('Api'), 'post')]",
                                 "[resourceId('Microsoft.ApiManagement/service/properties', parameters('apimName'), variables('Function URL Property'))]"
                             ],
                             "properties": {
