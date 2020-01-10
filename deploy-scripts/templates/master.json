@@ -147,8 +147,7 @@
                         "value": "[parameters('apimName')]"
                     },
                     "functionCallBackUrl": {
-                        "value": "Mow"
-                        // "value": "[reference(variables('Function Deployment')).outputs.publicIp.value]"
+                        "value": "[reference(variables('Function Deployment')).outputs.url.value]"
                     }
                 }
             }
