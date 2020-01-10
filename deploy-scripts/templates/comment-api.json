@@ -73,7 +73,7 @@
                     ],
                     "properties": {
                         "displayName": "post",
-                        "method": "post",
+                        "method": "POST",
                         "urlTemplate": "/",
                         "templateParameters": [
                         ],
