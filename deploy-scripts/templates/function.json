@@ -176,8 +176,8 @@
             "value": "[reference(resourceId('Microsoft.Web/sites', parameters('functionAppName')), '2019-08-01', 'Full').identity]"
         },
         "callbackUrl": {
-            "type": "string",
-            "value": "[listSecrets(resourceId('Microsoft.Web/sites/functions', parameters('functionAppName'), variables('Submit Function Name')), '2019-08-01').value]"
+            "type": "object",
+            "value": "[listSecrets(resourceId('Microsoft.Web/sites/functions', parameters('functionAppName'), variables('Submit Function Name')), '2019-08-01')]"
         }
     }
 }
