@@ -32,10 +32,17 @@
             },
             "defaultValue": "blog-app-plan",
             "type": "string"
+        },
+        "clientCidr": {
+            "metadata": {
+                "description": "IP CIDR of the client"
+            },
+            "type": "string"
         }
     },
     "variables": {
-        "Function App Timezone": "Canada Central Standard Time"
+        "Function App Timezone": "Canada Central Standard Time",
+        "Submit Function Name": "submit-comment"
     },
     "resources": [
         {
@@ -111,6 +118,55 @@
                 }
             },
             "resources": [
+                // {
+                //     "name": "web",
+                //     "type": "config",
+                //     "apiVersion": "2019-08-01",
+                //     "dependsOn": [
+                //         "[resourceId('Microsoft.Web/sites', parameters('functionAppName'))]"
+                //     ],
+                //     "properties": {
+                //         "ipSecurityRestrictions": [
+                //             {
+                //                 "name": "only-api-m",
+                //                 "ipAddress": "[parameters('clientCidr')]",
+                //                 "description": "Only Api-M should have access to the function",
+                //                 "priority": 100
+                //             }
+                //         ]
+                //     }
+                // },
+                {
+                    "type": "functions",
+                    "apiVersion": "2019-08-01",
+                    "name": "[variables('Submit Function Name')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', parameters('functionAppName'))]"
+                    ],
+                    "properties": {
+                        "config": {
+                            "bindings": [
+                                {
+                                    "authLevel": "function",
+                                    "name": "request",
+                                    "type": "httpTrigger",
+                                    "direction": "in",
+                                    "methods": [
+                                        "get"
+                                    ]
+                                },
+                                {
+                                    "name": "res",
+                                    "type": "http",
+                                    "direction": "out"
+                                }
+                            ]
+                        },
+                        "files": {
+                        },
+                        "isDisabled": false
+                    }
+                }
             ]
         }
     ],
@@ -118,6 +174,10 @@
         "identity": {
             "type": "object",
             "value": "[reference(resourceId('Microsoft.Web/sites', parameters('functionAppName')), '2019-08-01', 'Full').identity]"
+        },
+        "callbackUrl": {
+            "type": "string",
+            "value": "[listCallbackUrl(resourceId('Microsoft.Web/sites', parameters('functionAppName'), variables('Submit Function Name')), '2019-08-01').value]"
         }
     }
 }

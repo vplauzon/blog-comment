@@ -71,7 +71,8 @@
     "variables": {
         "Key Vault Deployment": "[concat('key-vault-', parameters('deploymentUid'))]",
         "Api Comment Deployment": "[concat('api-comment-', parameters('deploymentUid'))]",
-        "Function Deployment": "[concat('function-', parameters('deploymentUid'))]"
+        "Function Deployment": "[concat('function-', parameters('deploymentUid'))]",
+        "Apim ID": "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimName'))]"
     },
     "resources": [
         {
@@ -100,6 +101,9 @@
                     },
                     "appPlanName": {
                         "value": "[parameters('appPlanName')]"
+                    },
+                    "clientCidr": {
+                        "value": "Cow"
                     }
                 }
             }
@@ -140,11 +144,19 @@
                 "parameters": {
                     "apimName": {
                         "value": "[parameters('apimName')]"
+                    },
+                    "functionCallBackUrl": {
+                        "value": "Mow"
+                        // "value": "[reference(variables('Function Deployment')).outputs.publicIp.value]"
                     }
                 }
             }
         }
     ],
     "outputs": {
+        "test": {
+            "type": "object",
+            "value": "[reference(variables('Apim ID'), '2019-01-01')]"
+        }
     }
 }
