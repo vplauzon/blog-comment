@@ -83,12 +83,6 @@
                             "headers": [
                             ],
                             "representations": [
-                                {
-                                    "contentType": "application/json",
-                                    "sample": "{\r\n  \"PagePath\" : \"/1/2/3/my-blog\",\r\n  \"UserName\" : \"Bob\",\r\n  \"Content\" : \"Test comment\"\r\n}",
-                                    "schemaId": "1578612593327",
-                                    "typeName": "payload"
-                                }
                             ]
                         },
                         "responses": [
