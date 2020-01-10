@@ -177,7 +177,7 @@
         },
         "callbackUrl": {
             "type": "string",
-            "value": "[listCallbackUrl(resourceId('Microsoft.Web/sites', parameters('functionAppName'), variables('Submit Function Name')), '2019-08-01').value]"
+            "value": "[listCallbackUrl(resourceId('Microsoft.Web/sites/functions', parameters('functionAppName'), variables('Submit Function Name')), '2019-08-01').value]"
         }
     }
 }
