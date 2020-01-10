@@ -135,6 +135,7 @@
             "type": "Microsoft.Resources/deployments",
             "name": "[variables('Api Comment Deployment')]",
             "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', variables('Function Deployment'))]"
             ],
             "properties": {
                 "mode": "Incremental",
