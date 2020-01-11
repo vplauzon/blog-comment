@@ -97,7 +97,12 @@ namespace SearchFunction
             ILogger log)
         {
             var requestBody = await new StreamReader(request.Body).ReadToEndAsync();
-            var commentRequest = JsonSerializer.Deserialize<CommentRequest>(requestBody);
+            var commentRequest = JsonSerializer.Deserialize<CommentRequest>(
+                requestBody,
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
 
             log.LogInformation($"Request:  {requestBody}");
 
