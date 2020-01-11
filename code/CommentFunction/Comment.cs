@@ -13,13 +13,14 @@ namespace SearchFunction
             Author = new Author(commentRequest.UserName, commentRequest.WebSite);
             Date = DateTime.Now;
             Content = commentRequest.Content;
-            Id = new
-            {
-                commentRequest.PagePath,
-                commentRequest.UserName,
-                commentRequest.Content,
-                Date
-            }.GetHashCode();
+            Id = Math.Abs(
+                new
+                {
+                    commentRequest.PagePath,
+                    commentRequest.UserName,
+                    commentRequest.Content,
+                    Date
+                }.GetHashCode());
         }
 
         public int Id { get; }
