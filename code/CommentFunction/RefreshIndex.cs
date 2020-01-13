@@ -50,7 +50,7 @@ namespace SearchFunction
                 {
                     Committer = new Committer("commenter", "commenter@commenter.com", DateTime.Now)
                 };
-                var subFolder = $"{commentRequest.Year}/{commentRequest.Quarter}/{commentRequest.PostName}";
+                var subFolder = $"{commentRequest.Year}/{commentRequest.Quarter}/{commentRequest.PostName}/comments";
                 var filePath = $"_data/{subFolder}/{comment.Id}.yaml";
 
                 log.LogInformation("Branch Created");
