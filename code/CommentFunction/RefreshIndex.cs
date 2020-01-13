@@ -50,7 +50,7 @@ namespace SearchFunction
                 {
                     Committer = new Committer("commenter", "commenter@commenter.com", DateTime.Now)
                 };
-                var filePath = $"_data{commentRequest.Folder}{comment.Id}.yaml";
+                var filePath = $"_data/{commentRequest.Folder}/{comment.Id}.yaml";
 
                 log.LogInformation("Branch Created");
                 log.LogInformation("Comment:");
