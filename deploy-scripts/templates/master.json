@@ -101,9 +101,6 @@
                     },
                     "appPlanName": {
                         "value": "[parameters('appPlanName')]"
-                    },
-                    "clientCidr": {
-                        "value": "Cow"
                     }
                 }
             }

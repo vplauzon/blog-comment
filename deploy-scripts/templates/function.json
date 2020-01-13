@@ -32,12 +32,6 @@
             },
             "defaultValue": "blog-app-plan",
             "type": "string"
-        },
-        "clientCidr": {
-            "metadata": {
-                "description": "IP CIDR of the client"
-            },
-            "type": "string"
         }
     },
     "variables": {
@@ -118,24 +112,6 @@
                 }
             },
             "resources": [
-                // {
-                //     "name": "web",
-                //     "type": "config",
-                //     "apiVersion": "2019-08-01",
-                //     "dependsOn": [
-                //         "[resourceId('Microsoft.Web/sites', parameters('functionAppName'))]"
-                //     ],
-                //     "properties": {
-                //         "ipSecurityRestrictions": [
-                //             {
-                //                 "name": "only-api-m",
-                //                 "ipAddress": "[parameters('clientCidr')]",
-                //                 "description": "Only Api-M should have access to the function",
-                //                 "priority": 100
-                //             }
-                //         ]
-                //     }
-                // },
                 {
                     "type": "functions",
                     "apiVersion": "2019-08-01",
