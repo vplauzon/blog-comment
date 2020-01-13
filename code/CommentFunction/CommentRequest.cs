@@ -7,7 +7,11 @@ namespace CommentFunction
 {
     internal class CommentRequest
     {
-        public string Folder { get; set; } = string.Empty;
+        public int Year { get; set; }
+
+        public byte Quarter { get; set; }
+
+        public string PostName { get; set; } = string.Empty;
 
         public string UserName { get; set; } = string.Empty;
 
@@ -17,9 +21,17 @@ namespace CommentFunction
 
         public void Validate()
         {
-            if (string.IsNullOrWhiteSpace(Folder))
+            if (Year < 2010 || Year > DateTime.Now.Year)
             {
-                throw new ArgumentNullException(nameof(Folder));
+                throw new ArgumentNullException(nameof(Year));
+            }
+            if (Quarter < 1 || Quarter > 4)
+            {
+                throw new ArgumentNullException(nameof(Quarter));
+            }
+            if (string.IsNullOrWhiteSpace(PostName) || PostName.Contains('/'))
+            {
+                throw new ArgumentNullException(nameof(PostName));
             }
             if (string.IsNullOrWhiteSpace(UserName))
             {

@@ -15,7 +15,9 @@ namespace SearchFunction
             Content = commentRequest.Content;
             Id = new
             {
-                commentRequest.Folder,
+                commentRequest.Year,
+                commentRequest.Quarter,
+                commentRequest.PostName,
                 commentRequest.UserName,
                 commentRequest.Content,
                 Date
