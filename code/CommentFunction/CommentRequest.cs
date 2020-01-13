@@ -23,11 +23,11 @@ namespace CommentFunction
         {
             if (Year < 2010 || Year > DateTime.Now.Year)
             {
-                throw new ArgumentNullException(nameof(Year));
+                throw new ArgumentOutOfRangeException(nameof(Year));
             }
             if (Quarter < 1 || Quarter > 4)
             {
-                throw new ArgumentNullException(nameof(Quarter));
+                throw new ArgumentOutOfRangeException(nameof(Quarter));
             }
             if (string.IsNullOrWhiteSpace(PostName) || PostName.Contains('/'))
             {
