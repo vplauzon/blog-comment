@@ -1,6 +1,7 @@
 ﻿using CommentFunction;
 using System;
 using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace SearchFunction
 {
@@ -34,7 +35,9 @@ namespace SearchFunction
 
         public string AsYaml()
         {
-            var serializer = new Serializer();
+            var serializer = new SerializerBuilder()
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                .Build();
 
             return serializer.Serialize(this);
         }
