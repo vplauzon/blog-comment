@@ -7,7 +7,7 @@ namespace CommentFunction
 {
     internal class CommentRequest
     {
-        public string PagePath { get; set; } = string.Empty;
+        public string Folder { get; set; } = string.Empty;
 
         public string UserName { get; set; } = string.Empty;
 
@@ -17,9 +17,9 @@ namespace CommentFunction
 
         public void Validate()
         {
-            if (string.IsNullOrWhiteSpace(PagePath))
+            if (string.IsNullOrWhiteSpace(Folder))
             {
-                throw new ArgumentNullException(nameof(PagePath));
+                throw new ArgumentNullException(nameof(Folder));
             }
             if (string.IsNullOrWhiteSpace(UserName))
             {

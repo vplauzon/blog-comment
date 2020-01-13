@@ -50,7 +50,7 @@ namespace SearchFunction
                 {
                     Committer = new Committer("commenter", "commenter@commenter.com", DateTime.Now)
                 };
-                var filePath = $"_data{commentRequest.PagePath}{comment.Id}.yaml";
+                var filePath = $"_data{commentRequest.Folder}{comment.Id}.yaml";
 
                 log.LogInformation("Branch Created");
                 log.LogInformation("Comment:");
@@ -64,7 +64,7 @@ namespace SearchFunction
                     repo.Id,
                     new NewPullRequest(fileRequest.Message, newBranch.Ref, defaultBranch.Name)
                     {
-                        Body = $"From {comment.Author.Name} on {commentRequest.PagePath}"
+                        Body = $"From {comment.Author.Name} on {commentRequest.Folder}"
                     });
                 log.LogInformation("PR Created");
                 log.LogInformation("Done");
