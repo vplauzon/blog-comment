@@ -15,7 +15,7 @@ namespace CommentFunction
 
         public string UserName { get; set; } = string.Empty;
 
-        public Uri? WebSite { get; set; }
+        public string? WebSite { get; set; }
 
         public string Content { get; set; } = string.Empty;
 
