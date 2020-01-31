@@ -1,9 +1,8 @@
-﻿using CommentFunction;
-using System;
+﻿using System;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace SearchFunction
+namespace CommentFunction
 {
     internal class Comment
     {

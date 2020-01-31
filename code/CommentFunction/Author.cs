@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SearchFunction
+namespace CommentFunction
 {
     internal class Author
     {
@@ -12,7 +12,7 @@ namespace SearchFunction
             {
                 try
                 {
-                    Url = new Uri(urlText);
+                    Url = new Uri(urlText).ToString();
                 }
                 catch
                 {   //  Ignore, keep url null
@@ -22,6 +22,6 @@ namespace SearchFunction
 
         public string Name { get; }
 
-        public Uri? Url { get; }
+        public string? Url { get; }
     }
 }

@@ -3,20 +3,17 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CommentFunction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Search;
-using Microsoft.Azure.Search.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Octokit;
 
-namespace SearchFunction
+namespace CommentFunction
 {
-    public static class RefreshIndex
+    public static class SubmitComment
     {
         [FunctionName("submit-comment")]
         public async static Task<IActionResult> Run(
