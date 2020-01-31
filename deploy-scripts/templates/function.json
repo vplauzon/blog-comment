@@ -98,7 +98,7 @@
                         },
                         {
                             "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
-                            "value": "~2"
+                            "value": "~3"
                         },
                         {
                             "name": "WEBSITE_TIME_ZONE",
